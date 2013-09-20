@@ -1,0 +1,45 @@
+﻿@using Shoelace.Views.Extensions
+@using Shoelace.Models.Extensions
+@model Shoelace.Models.UserLoginModel.UserRegistrationModel
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Login/_LoginLayout.cshtml";
+}
+<div id="cntnrRegisterUser">
+    <form class="form-signin" data-bind="submit: submitRegistration">
+        <div class="control-group" data-bind="validationElement: firstName">
+            <span class="help-inline" data-bind="validationMessage: firstName"></span>
+            <input type="text" class="input-block-level" placeholder="First Name" data-bind="value: firstName, valueUpdate: 'afterkeydown'">
+        </div>
+        <div class="control-group" data-bind="validationElement: lastName">
+            <span class="help-inline" data-bind="validationMessage: lastName"></span>
+            <input type="text" class="input-block-level" placeholder="Last Name" data-bind="value: lastName, valueUpdate: 'afterkeydown'">
+        </div>
+        <div class="control-group" data-bind="validationElement: userName">
+            <span class="help-inline" data-bind="validationMessage: userName"></span>
+            <input type="text" class="input-block-level" placeholder="Email Address" data-bind="value: userName, valueUpdate: 'afterkeydown'">
+        </div>
+        <div class="control-group" data-bind="validationElement: password">
+            <span class="help-inline" data-bind="validationMessage: password"></span>
+            <input type="password" class="input-block-level" placeholder="Password" data-bind="value: password, valueUpdate: 'afterkeydown'">
+        </div>
+        <div class="control-group" data-bind="validationElement: confirmPassword">
+            <span class="help-inline" data-bind="validationMessage: confirmPassword"></span>
+            <input type="password" class="input-block-level" placeholder="Confirm Password" data-bind="value: confirmPassword, valueUpdate: 'afterkeydown'">
+        </div>
+    <button class="btn btn-large btn-primary" type="submit">Register</button>
+    </form>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/app/Views/Login/userRegister.viewmodel.js")
+
+    <script type="text/javascript">
+        $(function () {
+            var viewModelObj = APP.userRegisterViewModel(ko.mapping.fromJS(@Html.Raw(Model.ToJson())));
+             ko.applyBindings(viewModelObj, document.getElementById("cntnrRegisterUser"));
+         });
+    </script>
+}

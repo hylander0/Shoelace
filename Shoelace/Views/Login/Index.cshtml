@@ -1,0 +1,29 @@
+﻿@using Shoelace.Models.Extensions
+@model Shoelace.Models.UserLoginModel.UserLoginRequestModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Login/_LoginLayout.cshtml";
+}
+<form id="cntnrLoginUserView" class="form-signin" data-bind="submit: login" data-url="UserLogin">
+    <h2 class="form-signin-heading">Please sign in</h2>
+    <input type="text" class="input-block-level" placeholder="Email Address" data-bind="value: userName">
+    <input type="password" class="input-block-level" placeholder="Password" data-bind="value: password">
+    <label class="checkbox">
+        <input type="checkbox" value="remember-me" data-bind="checked: rememberMe">
+        Remember me
+   
+    </label>
+    <button class="btn btn-large btn-primary" type="submit">Sign in</button>
+</form>
+@section scripts {
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/Scripts/app/Views/Login/index.viewmodel.js")
+
+    <script type="text/javascript">
+        $(function () {
+            var viewModelObj = APP.userLoginViewModel(ko.mapping.fromJS(@Html.Raw(Model.ToJson())));
+            ko.applyBindings(viewModelObj, document.getElementById("cntnrLoginUserView"));
+     });
+</script>
+}

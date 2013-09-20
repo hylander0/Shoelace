@@ -1,0 +1,58 @@
+﻿@model Shoelace.Models.SideNavModel
+
+<ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
+    @foreach (var item in Model.menuItems)
+    {
+        bool isActive = (ViewContext.RouteData.Values["Controller"] == item.controller && ViewContext.RouteData.Values["Action"] == item.action);
+        <li class="@(isActive ? "active" : null)">
+            <a href="@Url.Action(item.action, item.controller)">
+                @if(item.badgeCnt > 0)
+                {
+                    var badgeType = (string.IsNullOrEmpty(item.badgeType) ? Shoelace.Common.Constants.UI_BADGE_TYPE_INFORMATION : item.badgeType);
+                    <span class="badge badge-@badgeType pull-right">@item.badgeCnt</span> 
+                }
+                @item.name
+
+            </a>
+        </li>
+    }
+   @* <li class="active">
+        <a href="index.html"><i class="icon-chevron-right"></i> Dashboard</a>
+    </li>
+    <li>
+        <a href="calendar.html"><i class="icon-chevron-right"></i> Calendar</a>
+    </li>
+    <li>
+        <a href="stats.html"><i class="icon-chevron-right"></i> Statistics (Charts)</a>
+    </li>
+    <li>
+        <a href="buttons.html"><i class="icon-chevron-right"></i> Buttons & Icons</a>
+    </li>
+    <li>
+        <a href="interface.html"><i class="icon-chevron-right"></i> UI & Interface</a>
+    </li>
+    <li>
+        <a href="#"><span class="badge badge-success pull-right">731</span> Orders</a>
+    </li>
+    <li>
+        <a href="#"><span class="badge badge-success pull-right">812</span> Invoices</a>
+    </li>
+    <li>
+        <a href="#"><span class="badge badge-info pull-right">27</span> Clients</a>
+    </li>
+    <li>
+        <a href="#"><span class="badge badge-info pull-right">1,234</span> Users</a>
+    </li>
+    <li>
+        <a href="#"><span class="badge badge-info pull-right">2,221</span> Messages</a>
+    </li>
+    <li>
+        <a href="#"><span class="badge badge-info pull-right">11</span> Reports</a>
+    </li>
+    <li>
+        <a href="#"><span class="badge badge-important pull-right">83</span> Errors</a>
+    </li>
+    <li>
+        <a href="#"><span class="badge badge-warning pull-right">4,231</span> Logs</a>
+    </li>*@
+</ul>
