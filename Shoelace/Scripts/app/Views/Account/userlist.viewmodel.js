@@ -1,6 +1,6 @@
 ﻿APP.userListViewModel = function (model) {
     var self = model;
-    $.extend(APP.manageProfileViewModel, model);
+    $.extend(APP.userListViewModel, model);
     self.selectedUser = ko.observable({});
     self.confirmDelete = function () {
         $("#hdDeleteUserId").val(this.userId());
