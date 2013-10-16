@@ -46,6 +46,8 @@ build/
 *.pidb
 *.log
 *.scc
+*.mdf
+*.ldf
 
 # Visual C++ cache files
 ipch/
@@ -100,7 +102,6 @@ publish/
 # NuGet Packages Directory
 ## TODO: If you have NuGet Package Restore enabled, uncomment the next line
 packages/
-Shoelace/App_Data/
 
 # Windows Azure Build Output
 csx
